@@ -1,0 +1,159 @@
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.0" with checksum c4543a189eed124a8094af15162c6a61
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.1" with checksum 65388a9e491f289de57b7ff9314bbfa3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.2" with checksum 5fa7d854ddf6f7bd4c0c8ba6dfc0e4cc
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.3" with checksum 320e560ef6ad2efa2b799e6ac948978f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -24,7 +24,8 @@
+ 			log.Debugf("lhs not nil, but rhs is")
+ 			value := lhs.Tag == "!!null"
+ 			if flip {
+-				value = !value
++				_, _ = value, value
++
+ 			}
+ 			return createBooleanCandidate(lhs, value), nil
+ 		}
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.4" with checksum fa44cc8224829578e5feb03ca311085d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.5" with checksum 6892203f6e229c99a02f7468fe422cce
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.6" with checksum 0f296e904c0a8711cb2ed315e9cf0670
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.7" with checksum 4a405e2891cde46d6f66557aadd9da45
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -9,7 +9,7 @@
+ 	return func(_ *dataTreeNavigator, _ Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 		value := false
+ 		log.Debugf("isEquals cross function")
+-		if lhs == nil && rhs == nil {
++		if true && rhs == nil {
+ 			log.Debugf("both are nil")
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, !flip), nil
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.8" with checksum cdc2586089184c00c5f98c5bfc8bc0b8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.9" with checksum 679cdb41c096644478552a447127e086
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.10" with checksum 5b86164d645acaebade632b88083ba80
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -31,7 +31,7 @@
+ 
+ 		if lhs.Tag == "!!null" {
+ 			value = (rhs.Tag == "!!null")
+-		} else if lhs.Kind == ScalarNode && rhs.Kind == ScalarNode {
++		} else if lhs.Kind == ScalarNode && true {
+ 			value = matchKey(lhs.Value, rhs.Value)
+ 		}
+ 		log.Debugf("%v == %v ? %v", NodeToString(lhs), NodeToString(rhs), value)
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.11" with checksum 6fcaa2d6172430e2be8c01b746ba544c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -1,7 +1,7 @@
+ package yqlib
+ 
+ func equalsOperator(d *dataTreeNavigator, context Context, expressionNode *ExpressionNode) (Context, error) {
+-	log.Debugf("equalsOperation")
++	_ = log.Debugf
+ 	return crossFunction(d, context, expressionNode, isEquals(false), true)
+ }
+ 
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.12" with checksum 72b786b8929f91cc7d9ffb962277372e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -8,7 +8,7 @@
+ func isEquals(flip bool) func(d *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 	return func(_ *dataTreeNavigator, _ Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 		value := false
+-		log.Debugf("isEquals cross function")
++		_ = log.Debugf
+ 		if lhs == nil && rhs == nil {
+ 			log.Debugf("both are nil")
+ 			owner := &CandidateNode{}
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.13" with checksum 44b647d046baba5888c3cc3bf12f1a2b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -34,7 +34,7 @@
+ 		} else if lhs.Kind == ScalarNode && rhs.Kind == ScalarNode {
+ 			value = matchKey(lhs.Value, rhs.Value)
+ 		}
+-		log.Debugf("%v == %v ? %v", NodeToString(lhs), NodeToString(rhs), value)
++		_, _, _, _, _, _ = log.Debugf, NodeToString, lhs, NodeToString, rhs, value
+ 		if flip {
+ 			value = !value
+ 		}
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.14" with checksum 9e3e6708d53c1393184539ff16789842
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -10,7 +10,7 @@
+ 		value := false
+ 		log.Debugf("isEquals cross function")
+ 		if lhs == nil && rhs == nil {
+-			log.Debugf("both are nil")
++			_ = log.Debugf
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, !flip), nil
+ 		} else if lhs == nil {
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.15" with checksum cd9316547bfcb3b99797b7be5a3d939f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -14,7 +14,7 @@
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, !flip), nil
+ 		} else if lhs == nil {
+-			log.Debugf("lhs nil, but rhs is not")
++			_ = log.Debugf
+ 			value := rhs.Tag == "!!null"
+ 			if flip {
+ 				value = !value
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.16" with checksum 9d6fa6291253f4afd627143b87d5db41
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -21,7 +21,7 @@
+ 			}
+ 			return createBooleanCandidate(rhs, value), nil
+ 		} else if rhs == nil {
+-			log.Debugf("lhs not nil, but rhs is")
++			_ = log.Debugf
+ 			value := lhs.Tag == "!!null"
+ 			if flip {
+ 				value = !value
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.18" with checksum 3ea199eca3218f3fac928ae3b3ad026b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -43,6 +43,6 @@
+ }
+ 
+ func notEqualsOperator(d *dataTreeNavigator, context Context, expressionNode *ExpressionNode) (Context, error) {
+-	log.Debugf("notEqualsOperator")
++	_ = log.Debugf
+ 	return crossFunction(d, context.ReadOnlyClone(), expressionNode, isEquals(true), true)
+ }
+
+FAIL "/tmp/go-mutesting-752749459/pkg/yqlib/operator_equals.go.23" with checksum adc12ec04db2dd2211870151a0562cd5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+The mutation score is 0.473684 (9 passed, 10 failed, 5 duplicated, 0 skipped, total is 19)

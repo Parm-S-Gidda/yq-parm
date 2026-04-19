@@ -124,3 +124,150 @@ func TestParserInvalidExpressionTree(t *testing.T) {
 	_, err := parser.createExpressionTree(invalidOps)
 	test.AssertResultComplex(t, "bad expression, please check expression syntax", err.Error())
 }
+
+// Test cases added by Mykhailo Isyp
+func TestParserBinaryOperatorCreatesChildren(t *testing.T) {
+	result, err := getExpressionParser().ParseExpression(".a == .b")
+	test.AssertResultComplex(t, nil, err)
+
+	if result == nil || result.LHS == nil || result.RHS == nil {
+		t.Fatal("expected root with both lhs and rhs")
+	}
+}
+
+func TestParserBinaryOperatorSetsParentPointers(t *testing.T) {
+	result, err := getExpressionParser().ParseExpression(".a == .b")
+	test.AssertResultComplex(t, nil, err)
+
+	if result.LHS == nil || result.RHS == nil {
+		t.Fatal("expected lhs and rhs to be set")
+	}
+	if result.LHS.Parent != result {
+		t.Fatal("expected lhs parent pointer to be set")
+	}
+	if result.RHS.Parent != result {
+		t.Fatal("expected rhs parent pointer to be set")
+	}
+}
+
+func TestParserTokeniseErrorUnclosedString(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`"unterminated`)
+	if err == nil {
+		t.Fatal("expected tokeniser error")
+	}
+}
+
+func TestParserZeroArgOperationHasNoChildren(t *testing.T) {
+	result, err := getExpressionParser().ParseExpression("first")
+	test.AssertResultComplex(t, nil, err)
+
+	if result == nil {
+		t.Fatal("expected result")
+	}
+	if result.LHS != nil || result.RHS != nil {
+		t.Fatal("expected zero-arg op to have no children")
+	}
+}
+
+func TestParserCloseCollectWithoutOpen(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`]`)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestParserCloseBracketWithoutOpen(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`)`)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestParserMismatchedNestedCollects(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`[{"a": 1)]`)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestParserDeepMismatchedNestedCollects(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`[{"a": [.b)}]`)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestParserTraverseArrayCollectOnIndexExpression(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`.[.a]`)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestParserTraverseArrayCollectOnPipeExpression(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`(.a | .b)[.c]`)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestParserArrayCloseWithoutOpenAfterPipe(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`.a | ]`)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestParserRoundCloseWithoutOpenAfterPipe(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`.a | )`)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestParserNestedIndexExpression(t *testing.T) {
+	_, err := getExpressionParser().ParseExpression(`.[.a][.b]`)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestParserNestedBinaryOperatorSetsInnerParents(t *testing.T) {
+	result, err := getExpressionParser().ParseExpression("(.a == .b) and (.c == .d)")
+	test.AssertResultComplex(t, nil, err)
+
+	if result == nil {
+		t.Fatal("expected result")
+	}
+	if result.LHS == nil || result.RHS == nil {
+		t.Fatal("expected lhs and rhs on root")
+	}
+	if result.LHS.Parent != result {
+		t.Fatal("expected lhs parent pointer on root")
+	}
+	if result.RHS.Parent != result {
+		t.Fatal("expected rhs parent pointer on root")
+	}
+
+	if result.LHS.LHS == nil || result.LHS.RHS == nil {
+		t.Fatal("expected children on left subtree")
+	}
+	if result.LHS.LHS.Parent != result.LHS {
+		t.Fatal("expected left subtree lhs parent to be set")
+	}
+	if result.LHS.RHS.Parent != result.LHS {
+		t.Fatal("expected left subtree rhs parent to be set")
+	}
+
+	if result.RHS.LHS == nil || result.RHS.RHS == nil {
+		t.Fatal("expected children on right subtree")
+	}
+	if result.RHS.LHS.Parent != result.RHS {
+		t.Fatal("expected right subtree lhs parent to be set")
+	}
+	if result.RHS.RHS.Parent != result.RHS {
+		t.Fatal("expected right subtree rhs parent to be set")
+	}
+}
+
+// End of test cases added by Mykhailo Isyp

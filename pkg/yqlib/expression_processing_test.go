@@ -2,6 +2,7 @@ package yqlib
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/mikefarah/yq/v4/test"
@@ -310,6 +311,43 @@ var pathTests = []struct {
 		append(make([]interface{}, 0), "foo*", "PIPE", "(", "SELF", "ASSIGN_STYLE", "flow (string)", ")"),
 		append(make([]interface{}, 0), "foo*", "SELF", "flow (string)", "ASSIGN_STYLE", "PIPE"),
 	},
+	// Test cases added by Mykhailo Isyp
+	{
+		`.a | (.b == "cat")`,
+		append(make([]interface{}, 0), "a", "PIPE", "(", "b", "EQUALS", "cat (string)", ")"),
+		append(make([]interface{}, 0), "a", "b", "cat (string)", "EQUALS", "PIPE"),
+	},
+	{
+		`.[.a][.b]`,
+		append(make([]interface{}, 0), "SELF", "TRAVERSE_ARRAY", "[", "a", "]", "TRAVERSE_ARRAY", "[", "b", "]"),
+		append(make([]interface{}, 0), "SELF", "a", "COLLECT", "TRAVERSE_ARRAY", "b", "COLLECT", "TRAVERSE_ARRAY"),
+	},
+	{
+		`(.a | .b)[.c]`,
+		append(make([]interface{}, 0), "(", "a", "PIPE", "b", ")", "TRAVERSE_ARRAY", "[", "c", "]"),
+		append(make([]interface{}, 0), "a", "b", "PIPE", "c", "COLLECT", "TRAVERSE_ARRAY"),
+	},
+	{
+		`(.a | .b | .c)[.d]`,
+		append(make([]interface{}, 0), "(", "a", "PIPE", "b", "PIPE", "c", ")", "TRAVERSE_ARRAY", "[", "d", "]"),
+		append(make([]interface{}, 0), "a", "b", "c", "PIPE", "PIPE", "d", "COLLECT", "TRAVERSE_ARRAY"),
+	},
+	{
+		`[.a == .b]`,
+		append(make([]interface{}, 0), "[", "a", "EQUALS", "b", "]"),
+		append(make([]interface{}, 0), "a", "b", "EQUALS", "COLLECT"),
+	},
+	{
+		`(.a == .b)`,
+		append(make([]interface{}, 0), "(", "a", "EQUALS", "b", ")"),
+		append(make([]interface{}, 0), "a", "b", "EQUALS"),
+	},
+	{
+		`.[] | (. == "cat" or . == "dog")`,
+		append(make([]interface{}, 0), "SELF", "TRAVERSE_ARRAY", "[", "EMPTY", "]", "PIPE", "(", "SELF", "EQUALS", "cat (string)", "OR", "SELF", "EQUALS", "dog (string)", ")"),
+		append(make([]interface{}, 0), "SELF", "EMPTY", "COLLECT", "TRAVERSE_ARRAY", "SELF", "cat (string)", "EQUALS", "SELF", "dog (string)", "EQUALS", "OR", "PIPE"),
+	},
+	// End of test cases added by Mykhailo Isyp
 }
 
 var tokeniser = newParticipleLexer()
@@ -342,3 +380,220 @@ func TestPathParsing(t *testing.T) {
 
 	}
 }
+
+// Test cases added by Mykhailo Isyp
+
+func TestPostFixerCloseCollectAfterDanglingOperationErrors(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: operationToken,
+			Operation: &Operation{OperationType: pipeOpType},
+		},
+		{
+			TokenType: closeCollect,
+			Match:     "]",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, could not find matching `)`", err.Error())
+}
+
+func TestPostFixerCloseCollectObjectAfterDanglingOperationErrors(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: operationToken,
+			Operation: &Operation{OperationType: pipeOpType},
+		},
+		{
+			TokenType: closeCollectObject,
+			Match:     "}",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, could not find matching `)`", err.Error())
+}
+
+func TestPostFixerCloseCollectAfterTraverseArrayProducesTraverseResult(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: operationToken,
+			Operation: &Operation{OperationType: traverseArrayOpType},
+		},
+		{
+			TokenType: openCollect,
+			Match:     "[",
+		},
+		{
+			TokenType: closeCollect,
+			Match:     "]",
+		},
+	}
+
+	results, err := postFixer.ConvertToPostfix(tokens)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var readableResults []interface{}
+	for _, token := range results {
+		readableResults = append(readableResults, token.toString())
+	}
+
+	test.AssertResultComplex(t, []interface{}{"COLLECT", "TRAVERSE_ARRAY"}, readableResults)
+}
+
+func TestPostFixerCloseCollectObjectProducesShortPipe(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: openCollectObject,
+			Match:     "{",
+		},
+		{
+			TokenType: closeCollectObject,
+			Match:     "}",
+		},
+	}
+
+	results, err := postFixer.ConvertToPostfix(tokens)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var readableResults []interface{}
+	for _, token := range results {
+		readableResults = append(readableResults, token.toString())
+	}
+
+	test.AssertResultComplex(t, []interface{}{"COLLECT_OBJECT", "SHORT_PIPE"}, readableResults)
+}
+
+func TestPostFixerHigherPrecedenceOperatorPopsBeforeLowerPrecedence(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: operationToken,
+			Operation: &Operation{OperationType: multiplyOpType},
+		},
+		{
+			TokenType: operationToken,
+			Operation: &Operation{OperationType: addOpType},
+		},
+	}
+
+	results, err := postFixer.ConvertToPostfix(tokens)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var readableResults []interface{}
+	for _, token := range results {
+		readableResults = append(readableResults, token.toString())
+	}
+
+	test.AssertResultComplex(t, []interface{}{"ADD", "MULTIPLY"}, readableResults)
+}
+
+func TestPostFixerUnmatchedCloseBracketAfterDanglingOperationErrors(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: operationToken,
+			Operation: &Operation{OperationType: pipeOpType},
+		},
+		{
+			TokenType: closeBracket,
+			Match:     ")",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, got close brackets without matching opening bracket", err.Error())
+}
+
+func TestPostFixerBareCloseCollectUsesSentinelOpenBracketError(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: closeCollect,
+			Match:     "]",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, could not find matching `)`", err.Error())
+}
+
+func TestPostFixerBareCloseCollectObjectUsesSentinelOpenBracketError(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: closeCollectObject,
+			Match:     "}",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, could not find matching `)`", err.Error())
+}
+
+func TestPostFixerLeavesOpenBracketOnStackAtEnd(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: openBracket,
+			Match:     "(",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	if !strings.Contains(err.Error(), "bad expression - probably missing close bracket") {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+func TestPostFixerLeavesOpenCollectOnStackAtEnd(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: openCollect,
+			Match:     "[",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, could not find matching `]`", err.Error())
+}
+
+func TestPostFixerLeavesOpenCollectObjectOnStackAtEnd(t *testing.T) {
+	tokens := []*token{
+		{
+			TokenType: openCollectObject,
+			Match:     "{",
+		},
+	}
+
+	_, err := postFixer.ConvertToPostfix(tokens)
+	if err == nil {
+		t.Fatal("expected postfix conversion error")
+	}
+	test.AssertResultComplex(t, "bad expression, could not find matching `}`", err.Error())
+}
+
+// End of test cases added by Mykhailo Isyp

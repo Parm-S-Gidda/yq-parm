@@ -1,0 +1,325 @@
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.0" with checksum f9516c1c003f8570aee6b287c8d551d6
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.1" with checksum 982c1ebeba1f7b4ca7ef3eaceff53b8f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.2" with checksum 92e78ad7ce506d29e777e35a89dea1cd
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.3" with checksum 729ff8a52eb3704735e5985ea044916e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.4" with checksum e9ad6ff16ea135834848619ce3e29e32
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.5" with checksum 15b1f117b662069982e1a1e565a5076a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -38,7 +38,7 @@
+ 			return nil, fmt.Errorf("arrays not yet supported for comparison")
+ 		default:
+ 			if rhs.Kind != ScalarNode {
+-				return nil, fmt.Errorf("%v (%v) cannot be subtracted from %v", rhs.Tag, rhs.GetNicePath(), lhs.Tag)
++				_, _, _, _ = fmt.Errorf, rhs.Tag, rhs.GetNicePath, lhs.Tag
+ 			}
+ 			target := lhs.CopyWithoutContent()
+ 			boolV, err := compareScalars(context, prefs, lhs, rhs)
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.6" with checksum 1b638c399c4c29a9bab24613a9b5f4f2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.7" with checksum 065c4bced55752e9841c8a9efa6dcd6c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.8" with checksum 90b3df774263c95a17292f98844c4cff
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.9" with checksum 59072a7ec14fe8efdf488feaba3a585c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.10" with checksum 498d731e33b3d6ffdc3e0c50414d594a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.11" with checksum 3032fc9178820d0663a81da0ccd72751
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.12" with checksum e7d95c9455e8a21c394ff1eabab95c24
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.13" with checksum f69ec421442c82d91f3e72d6a27e9899
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.14" with checksum 98f27b9d8da2b3b05f8d11781e261e0a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.15" with checksum 01dd8f034ebadc5c6f0ac0ef8762057e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.16" with checksum fcdd9f55ae9b68b604965e142fa0b637
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.17" with checksum f6615283a4a2d1ac0e65442e8564eae8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.18" with checksum d4aefde6f1614925bc0ce0b2f97a04b1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.19" with checksum b34f5a7ba4ab62251b4f4b740bfea3f4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.20" with checksum fc3555ba7c492670db33928cd99cda06
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.21" with checksum 4f0a7bf218085bbb07931c80b63e78c5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.22" with checksum 086ff381c8fc6c6a8edd7393fc2f2cf2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.23" with checksum 94592c6829af10717933e8d1f2d68867
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.24" with checksum 135edb07a51d75df7498b07e52b95545
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.25" with checksum feb8e7398a5113acf165a299f406df1b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.26" with checksum ccf3290ec2fc615ec8aae82fd466b58b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.27" with checksum b093c60803aa51e512f13e6dea8f1a29
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.28" with checksum 53bcf1af608970189df2342c3bde1109
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.29" with checksum 54a39ceedd2d486a8c11151bfe2f33af
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.30" with checksum 857b7390a541c2dbb39d02f7af0c6a8e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.31" with checksum 068751f659aabc7593d120dd09ef9339
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.32" with checksum bca0de669776993aa9db9e53dc513a23
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.33" with checksum a83a99dd7029040a009cb7c79772bb7f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.34" with checksum d361ed593b70ef47781598d35776fea5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.35" with checksum 21bd1b0cfb7d1635def768c41e61d0b7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.36" with checksum 57da4c13540a797806e59d7a9446e378
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.37" with checksum 6c7bd9b5ae154e55c72d33589baaaaa8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -20,7 +20,7 @@
+ func compare(prefs compareTypePref) func(d *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 	return func(_ *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 		log.Debugf("compare cross function")
+-		if lhs == nil && rhs == nil {
++		if true && rhs == nil {
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, prefs.OrEqual), nil
+ 		} else if lhs == nil {
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.38" with checksum d0b52219f4e6f09315bb6eb98a6b486f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -20,7 +20,7 @@
+ func compare(prefs compareTypePref) func(d *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 	return func(_ *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 		log.Debugf("compare cross function")
+-		if lhs == nil && rhs == nil {
++		if lhs == nil && true {
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, prefs.OrEqual), nil
+ 		} else if lhs == nil {
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.39" with checksum c2c64771617bd5652de46c7547378717
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.40" with checksum aa78c82e6e0561459b6f2a0c6080baf9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.41" with checksum fa37fa052e20a53eb32ff46d1ae66d8f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.42" with checksum c0bd679af9dcfcd487457ddff2fcf065
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.43" with checksum 1ca7fa95a76d0e72ee32665132ff85dc
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.44" with checksum 73ad215f901e3a6605b2c0e5087e00a7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.45" with checksum d288d06b5c9ec911aa31ae7ea0ba613f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.46" with checksum 6f15eacc359ffd00241eba70e317d2c7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.47" with checksum a2777da68a08e080bc73a0885a4de1c4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.48" with checksum 88b31bf64e1c19238cd1bafa55e9e095
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.49" with checksum 2db3828cb65e55085e68b99d5136ddc0
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.50" with checksum 6404658935b0fadb696ecf07f5e0f1ce
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.51" with checksum 2f03b974107399fe09e8bbe7c2c9d05f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.52" with checksum e83671ed943dbaee3d7338f69a882172
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.53" with checksum 5f8141479efe2cb2901a2f112c561180
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.54" with checksum 44c0dc9c85032f32856f5ce20e9419a7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.55" with checksum 1fb14365cd025df65469d687c13c15c2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.56" with checksum 8d354961cd4d70893647eab210899584
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.57" with checksum 22577ab389b2f37a0766b50ce64501ad
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.58" with checksum 83fd5127ab649e0191a42dbb26377a90
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.59" with checksum e4f36e3aeeb081b36e34aeedee843d90
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.60" with checksum ed28d8c5c058712ca3037a52fcc24f18
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.61" with checksum 24dce49caa8cedfe6b4cca99beab07b1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.62" with checksum 1447e27324faa1ccab7f49676fb97620
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.63" with checksum e99dbfc7e0c34b067d0872ff7205ff40
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.64" with checksum f3aac7316bb79353e5ed74c0057b6499
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.65" with checksum 31fca0a0a6d319c41b06bbfaf51d5658
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -99,7 +99,7 @@
+ 		}
+ 		return lhsNum < rhsNum, nil
+ 	} else if (lhsTag == "!!int" || lhsTag == "!!float") && (rhsTag == "!!int" || rhsTag == "!!float") {
+-		lhsNum, err := strconv.ParseFloat(lhs.Value, 64)
++		lhsNum, err := strconv.ParseFloat(lhs.Value, 63)
+ 		if err != nil {
+ 			return false, err
+ 		}
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.66" with checksum 53bbf3adde9244b4c1db43131ca096e8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -103,7 +103,7 @@
+ 		if err != nil {
+ 			return false, err
+ 		}
+-		rhsNum, err := strconv.ParseFloat(rhs.Value, 64)
++		rhsNum, err := strconv.ParseFloat(rhs.Value, 63)
+ 		if err != nil {
+ 			return false, err
+ 		}
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.67" with checksum cdbb0a0e8ce1ab252df1beb196e9d7b5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -99,7 +99,7 @@
+ 		}
+ 		return lhsNum < rhsNum, nil
+ 	} else if (lhsTag == "!!int" || lhsTag == "!!float") && (rhsTag == "!!int" || rhsTag == "!!float") {
+-		lhsNum, err := strconv.ParseFloat(lhs.Value, 64)
++		lhsNum, err := strconv.ParseFloat(lhs.Value, 65)
+ 		if err != nil {
+ 			return false, err
+ 		}
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.68" with checksum 6033c312c8d84a5dd4f71351434e1da3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -103,7 +103,7 @@
+ 		if err != nil {
+ 			return false, err
+ 		}
+-		rhsNum, err := strconv.ParseFloat(rhs.Value, 64)
++		rhsNum, err := strconv.ParseFloat(rhs.Value, 65)
+ 		if err != nil {
+ 			return false, err
+ 		}
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.69" with checksum 3d9ee7dd7e9d7d11cb7e8ce4523f2ab9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -12,7 +12,7 @@
+ }
+ 
+ func compareOperator(d *dataTreeNavigator, context Context, expressionNode *ExpressionNode) (Context, error) {
+-	log.Debugf("compareOperator")
++	_ = log.Debugf
+ 	prefs := expressionNode.Operation.Preferences.(compareTypePref)
+ 	return crossFunction(d, context, expressionNode, compare(prefs), true)
+ }
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.70" with checksum 687eea1e2a0482c4e56d1894b09c2d48
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -19,7 +19,7 @@
+ 
+ func compare(prefs compareTypePref) func(d *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+ 	return func(_ *dataTreeNavigator, context Context, lhs *CandidateNode, rhs *CandidateNode) (*CandidateNode, error) {
+-		log.Debugf("compare cross function")
++		_ = log.Debugf
+ 		if lhs == nil && rhs == nil {
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, prefs.OrEqual), nil
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.71" with checksum 4f06d02bbbe049d00dfc92303710df9b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -24,7 +24,7 @@
+ 			owner := &CandidateNode{}
+ 			return createBooleanCandidate(owner, prefs.OrEqual), nil
+ 		} else if lhs == nil {
+-			log.Debugf("lhs nil, but rhs is not")
++			_ = log.Debugf
+ 			return createBooleanCandidate(rhs, false), nil
+ 		} else if rhs == nil {
+ 			log.Debugf("rhs nil, but rhs is not")
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.72" with checksum b2c88e2cc3f44427325a27f834930763
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -27,7 +27,7 @@
+ 			log.Debugf("lhs nil, but rhs is not")
+ 			return createBooleanCandidate(rhs, false), nil
+ 		} else if rhs == nil {
+-			log.Debugf("rhs nil, but rhs is not")
++			_ = log.Debugf
+ 			return createBooleanCandidate(lhs, false), nil
+ 		}
+ 
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.73" with checksum 8d99b0d3f14f5027d7991cf91eacb4c5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -77,7 +77,8 @@
+ 	// if the lhs is a string, it might be a timestamp in a custom format.
+ 	if lhsTag == "!!str" {
+ 		_, err := parseDateTime(context.GetDateTimeLayout(), lhs.Value)
+-		isDateTime = err == nil
++		_, _ = isDateTime, err
++
+ 	}
+ 	if isDateTime {
+ 		return compareDateTime(context.GetDateTimeLayout(), prefs, lhs, rhs)
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.74" with checksum 2c22774075702152a98bf74d50a3b3dd
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.75" with checksum c6a5624f784ab9f37de0562aa87bc2f6
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -159,7 +159,7 @@
+ }
+ 
+ func minOperator(d *dataTreeNavigator, context Context, _ *ExpressionNode) (Context, error) {
+-	log.Debug(("Min"))
++	_ = log.Debug
+ 	return superlativeByComparison(d, context, compareTypePref{Greater: false})
+ }
+ 
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.77" with checksum 76aeb660e84768a3491e589e1aafbca7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -164,6 +164,6 @@
+ }
+ 
+ func maxOperator(d *dataTreeNavigator, context Context, _ *ExpressionNode) (Context, error) {
+-	log.Debug(("Max"))
++	_ = log.Debug
+ 	return superlativeByComparison(d, context, compareTypePref{Greater: true})
+ }
+
+FAIL "/tmp/go-mutesting-623333588/pkg/yqlib/operator_compare.go.78" with checksum 1f2226aaf36a26fa8bc4990a82786fd2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+The mutation score is 0.820513 (64 passed, 14 failed, 1 duplicated, 0 skipped, total is 78)

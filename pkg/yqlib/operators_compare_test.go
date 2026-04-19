@@ -2,6 +2,7 @@ package yqlib
 
 import (
 	"testing"
+	"time"
 )
 
 var compareOperatorScenarios = []expressionScenario{
@@ -375,6 +376,108 @@ var compareOperatorScenarios = []expressionScenario{
 			"D0, P[b], (!!bool)::false\n",
 		},
 	},
+	// Test cases added by Mykhailo Isyp
+	{
+		skipDoc:    true,
+		document:   "a: 5\nb: 5.0",
+		expression: ".a >= .b",
+		expected: []string{
+			"D0, P[a], (!!bool)::true\n",
+		},
+	},
+	{
+		skipDoc:    true,
+		document:   "a: 5\nb: 5.0",
+		expression: ".a <= .b",
+		expected: []string{
+			"D0, P[a], (!!bool)::true\n",
+		},
+	},
+	{
+		skipDoc:    true,
+		document:   "a: 5\nb: 4.5",
+		expression: ".a > .b",
+		expected: []string{
+			"D0, P[a], (!!bool)::true\n",
+		},
+	},
+	{
+		skipDoc:    true,
+		document:   "a: 4.5\nb: 5",
+		expression: ".a < .b",
+		expected: []string{
+			"D0, P[a], (!!bool)::true\n",
+		},
+	},
+	{
+		skipDoc:       true,
+		document:      "a: 2021-01-01T00:00:00Z\nb: bad-date",
+		expression:    ".a > .b",
+		expectedError: `parsing time "bad-date" as "2006-01-02": cannot parse "bad-date" as "2006"`,
+	},
+	{
+		skipDoc:       true,
+		document:      "a: 5\nb: cat",
+		expression:    ".a > .b",
+		expectedError: "!!int not yet supported for comparison",
+	},
+	{
+		skipDoc:       true,
+		document:      "a: cat\nb: 5",
+		expression:    ".a < .b",
+		expectedError: "!!str not yet supported for comparison",
+	},
+	{
+		skipDoc:    true,
+		document:   `a: null`,
+		expression: `.a >= .b`,
+		expected: []string{
+			"D0, P[a], (!!bool)::true\n",
+		},
+	},
+	{
+		skipDoc:    true,
+		document:   `a: null`,
+		expression: `.a > .b`,
+		expected: []string{
+			"D0, P[a], (!!bool)::false\n",
+		},
+	},
+	{
+		skipDoc:       true,
+		document:      "a: not-an-int\nb: 5",
+		expression:    ".a > .b",
+		expectedError: "!!str not yet supported for comparison",
+	},
+	{
+		skipDoc:       true,
+		document:      "a: 5\nb: not-an-int",
+		expression:    ".a < .b",
+		expectedError: "!!int not yet supported for comparison",
+	},
+	{
+		skipDoc:       true,
+		document:      "a: 5.1\nb: bad-float",
+		expression:    ".a > .b",
+		expectedError: "!!float not yet supported for comparison",
+	},
+	{
+		skipDoc:    true,
+		document:   "a: null\nb: 5",
+		expression: ".a < .b",
+		expected: []string{
+			"D0, P[a], (!!bool)::false\n",
+		},
+	},
+	{
+		skipDoc:    true,
+		document:   "a: 5\nb: null",
+		expression: ".a < .b",
+		expected: []string{
+			"D0, P[a], (!!bool)::false\n",
+		},
+	},
+	// End of test cases added by Mykhailo Isyp
 }
 
 func TestCompareOperatorScenarios(t *testing.T) {
@@ -447,3 +550,183 @@ func TestMaxOperatorScenarios(t *testing.T) {
 	}
 	documentOperatorScenarios(t, "max", maxOperatorScenarios)
 }
+
+// Test cases added by Mykhailo Isyp
+func compareNode(kind Kind, tag, value string) *CandidateNode {
+	return &CandidateNode{
+		Kind:  kind,
+		Tag:   tag,
+		Value: value,
+	}
+}
+
+func TestCompareNilLhsReturnsFalse(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+	rhs := compareNode(ScalarNode, "!!int", "5")
+
+	got, err := fn(nil, Context{}, nil, rhs)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Tag != "!!bool" || got.Value != "false" {
+		t.Fatalf("expected false bool candidate, got tag=%v value=%v", got.Tag, got.Value)
+	}
+}
+
+func TestCompareNilRhsReturnsFalse(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+	lhs := compareNode(ScalarNode, "!!int", "5")
+
+	got, err := fn(nil, Context{}, lhs, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Tag != "!!bool" || got.Value != "false" {
+		t.Fatalf("expected false bool candidate, got tag=%v value=%v", got.Tag, got.Value)
+	}
+}
+
+func TestCompareBothNilOrEqualTrue(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: true})
+
+	got, err := fn(nil, Context{}, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Tag != "!!bool" || got.Value != "true" {
+		t.Fatalf("expected true bool candidate, got tag=%v value=%v", got.Tag, got.Value)
+	}
+}
+
+func TestCompareReturnsErrorForScalarVsMap(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+	lhs := compareNode(ScalarNode, "!!int", "5")
+	rhs := compareNode(MappingNode, "!!map", "")
+
+	_, err := fn(nil, Context{}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestCompareDateTimeInvalidLHS(t *testing.T) {
+	lhs := compareNode(ScalarNode, "!!timestamp", "bad-date")
+	rhs := compareNode(ScalarNode, "!!timestamp", "2021-01-01T00:00:00Z")
+
+	_, err := compareDateTime(time.RFC3339, compareTypePref{OrEqual: false}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected datetime parse error")
+	}
+}
+
+func TestCompareDateTimeInvalidRHS(t *testing.T) {
+	lhs := compareNode(ScalarNode, "!!timestamp", "2021-01-01T00:00:00Z")
+	rhs := compareNode(ScalarNode, "!!timestamp", "bad-date")
+
+	_, err := compareDateTime(time.RFC3339, compareTypePref{OrEqual: false}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected datetime parse error")
+	}
+}
+
+func TestCompareScalarsInvalidIntLHS(t *testing.T) {
+	lhs := compareNode(ScalarNode, "!!int", "bad")
+	rhs := compareNode(ScalarNode, "!!int", "5")
+
+	_, err := compareScalars(Context{}, compareTypePref{OrEqual: false}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected int parse error")
+	}
+}
+
+func TestCompareScalarsInvalidIntRHS(t *testing.T) {
+	lhs := compareNode(ScalarNode, "!!int", "5")
+	rhs := compareNode(ScalarNode, "!!int", "bad")
+
+	_, err := compareScalars(Context{}, compareTypePref{OrEqual: false}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected int parse error")
+	}
+}
+
+func TestCompareScalarsInvalidFloatLHS(t *testing.T) {
+	lhs := compareNode(ScalarNode, "!!float", "bad")
+	rhs := compareNode(ScalarNode, "!!float", "5.2")
+
+	_, err := compareScalars(Context{}, compareTypePref{OrEqual: false}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected float parse error")
+	}
+}
+
+func TestCompareScalarsInvalidFloatRHS(t *testing.T) {
+	lhs := compareNode(ScalarNode, "!!float", "5.2")
+	rhs := compareNode(ScalarNode, "!!float", "bad")
+
+	_, err := compareScalars(Context{}, compareTypePref{OrEqual: false}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected float parse error")
+	}
+}
+
+func TestCompareBothNilOrEqualFalse(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+
+	got, err := fn(nil, Context{}, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Tag != "!!bool" || got.Value != "false" {
+		t.Fatalf("expected false, got tag=%v value=%v", got.Tag, got.Value)
+	}
+}
+
+func TestCompareScalarVsMapReturnsError(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+
+	lhs := &CandidateNode{Kind: ScalarNode, Tag: "!!int", Value: "5"}
+	rhs := &CandidateNode{Kind: MappingNode, Tag: "!!map"}
+
+	_, err := fn(nil, Context{}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestCompareBothNilReturnsTrueWhenOrEqualTrue(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: true})
+
+	got, err := fn(nil, Context{}, nil, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Tag != "!!bool" || got.Value != "true" {
+		t.Fatalf("expected true, got tag=%v value=%v", got.Tag, got.Value)
+	}
+}
+
+func TestCompareScalarVsSequenceReturnsError(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+
+	lhs := &CandidateNode{Kind: ScalarNode, Tag: "!!int", Value: "5"}
+	rhs := &CandidateNode{Kind: SequenceNode, Tag: "!!seq"}
+
+	_, err := fn(nil, Context{}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+func TestCompareSequenceVsScalarReturnsError(t *testing.T) {
+	fn := compare(compareTypePref{OrEqual: false})
+
+	lhs := &CandidateNode{Kind: SequenceNode, Tag: "!!seq"}
+	rhs := &CandidateNode{Kind: ScalarNode, Tag: "!!int", Value: "5"}
+
+	_, err := fn(nil, Context{}, lhs, rhs)
+	if err == nil {
+		t.Fatal("expected error")
+	}
+}
+
+// End of test cases added by Mykhailo Isyp

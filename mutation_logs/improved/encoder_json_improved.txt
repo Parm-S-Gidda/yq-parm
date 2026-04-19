@@ -1,0 +1,59 @@
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.0" with checksum c2daf940c7e87ccd202ba935b9071a0e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.1" with checksum 5e4b4fb5fc682ab4e684d087fdec291f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.2" with checksum ef264cf5065da30b329019c9ecbb2cc9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.3" with checksum 55a67c667c839089cde3db5185d6f1c9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.4" with checksum 415ef6ff81ae067e99927daf180df4e9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.5" with checksum 5d7df4077b1eaf9531177327387f4462
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.6" with checksum 54fcc3c1439081e87c591dfe9b6c9118
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.7" with checksum a3e88a9b8fbd78c21d3a2a0613e088fd
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.8" with checksum 98cc662ca8de92e2ff31a5bd197acd4d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.9" with checksum 5b650ee40da2d97143bab9f0292622d5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.10" with checksum ef08b956d494915dcfef7277b5aaf866
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.11" with checksum e9f61fc7557d10f8d79eb30c50bda5c7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.12" with checksum 55caa3ddb7591cee766867e019c4e68c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -37,7 +37,7 @@
+ }
+ 
+ func (je *jsonEncoder) Encode(writer io.Writer, node *CandidateNode) error {
+-	log.Debugf("I need to encode %v", NodeToString(node))
++	_, _, _ = log.Debugf, NodeToString, node
+ 	log.Debugf("kids %v", len(node.Content))
+ 
+ 	if node.Kind == ScalarNode && je.prefs.UnwrapScalar {
+
+FAIL "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.13" with checksum 2784415f2be30c881cce45d1bd1ffe3a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -38,7 +38,7 @@
+ 
+ func (je *jsonEncoder) Encode(writer io.Writer, node *CandidateNode) error {
+ 	log.Debugf("I need to encode %v", NodeToString(node))
+-	log.Debugf("kids %v", len(node.Content))
++	_, _ = log.Debugf, node.Content
+ 
+ 	if node.Kind == ScalarNode && je.prefs.UnwrapScalar {
+ 		return writeString(writer, node.Value+"\n")
+
+FAIL "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.14" with checksum c57c3321c114ce8c6fb2e6f9f4379c24
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.15" with checksum a35e848b6b7a48d1c344b0465006bd5b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-3778072802/pkg/yqlib/encoder_json.go.16" with checksum 005b9df1a3743ce0f187425dafb8bb41
+------------------------------------------------------------------------------------------------------------------------------------------------------
+The mutation score is 0.882353 (15 passed, 2 failed, 1 duplicated, 0 skipped, total is 17)

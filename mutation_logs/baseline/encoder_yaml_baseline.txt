@@ -1,0 +1,135 @@
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.0" with checksum f114b972ac5ca35e6b26fbe0cae7bb5f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.1" with checksum 62a82c88b6d691025089f2237c19794a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.2" with checksum 267cfbd71dd21972e5f853b4ee589adf
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.3" with checksum f60e299f0adbe1b44a0ca7c340086afb
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -46,7 +46,8 @@
+ 	destination := writer
+ 	tempBuffer := bytes.NewBuffer(nil)
+ 	if ye.prefs.ColorsEnabled {
+-		destination = tempBuffer
++		_, _ = destination, tempBuffer
++
+ 	}
+ 
+ 	var encoder = yaml.NewEncoder(destination)
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.4" with checksum a27a7afa7578e60adda012aef30f70c0
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -53,7 +53,7 @@
+ 
+ 	encoder.SetIndent(ye.prefs.Indent)
+ 	if ye.prefs.CompactSequenceIndent {
+-		encoder.CompactSeqIndent()
++		_ = encoder.CompactSeqIndent
+ 	}
+ 
+ 	target, err := node.MarshalYAML()
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.5" with checksum 09b1623ede7f0f6f0f7649769b59666d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -59,7 +59,8 @@
+ 	target, err := node.MarshalYAML()
+ 
+ 	if err != nil {
+-		return err
++		_ = err
++
+ 	}
+ 
+ 	trailingContent := target.FootComment
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.6" with checksum 347442574511add08ea287426dcad477
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -66,7 +66,8 @@
+ 	target.FootComment = ""
+ 
+ 	if err := encoder.Encode(target); err != nil {
+-		return err
++		_ = err
++
+ 	}
+ 
+ 	if err := ye.PrintLeadingContent(destination, trailingContent); err != nil {
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.7" with checksum 878dca2e9c2c9f473fe2b6fe15334174
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -70,7 +70,8 @@
+ 	}
+ 
+ 	if err := ye.PrintLeadingContent(destination, trailingContent); err != nil {
+-		return err
++		_ = err
++
+ 	}
+ 
+ 	if ye.prefs.ColorsEnabled {
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.8" with checksum 61996a71225753296eb587150eefcf1a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -74,7 +74,7 @@
+ 	}
+ 
+ 	if ye.prefs.ColorsEnabled {
+-		return colorizeAndPrint(tempBuffer.Bytes(), writer)
++		_, _, _ = colorizeAndPrint, tempBuffer.Bytes, writer
+ 	}
+ 	return nil
+ }
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.9" with checksum b5c8e3fd9c09a2d495c702597bc28db1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.10" with checksum 76663015e8af4acd095395a8309428a8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -35,7 +35,7 @@
+ 	if strings.Contains(node.LeadingContent, "\r\n") {
+ 		lineEnding = "\r\n"
+ 	}
+-	if node.Kind == ScalarNode && ye.prefs.UnwrapScalar {
++	if node.Kind == ScalarNode && true {
+ 		valueToPrint := node.Value
+ 		if node.LeadingContent == "" || valueToPrint != "" {
+ 			valueToPrint = valueToPrint + lineEnding
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.11" with checksum cbf0a8c8682e273f9f97dc6d7d0df2d7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.12" with checksum d98e6c31c0ce141129eb01295853ad08
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.13" with checksum d9eba6ceafd6ced500aef7ef92147916
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -29,7 +29,7 @@
+ }
+ 
+ func (ye *yamlEncoder) Encode(writer io.Writer, node *CandidateNode) error {
+-	log.Debugf("encoderYaml - going to print %v", NodeToString(node))
++	_, _, _ = log.Debugf, NodeToString, node
+ 	// Detect line ending style from LeadingContent
+ 	lineEnding := "\n"
+ 	if strings.Contains(node.LeadingContent, "\r\n") {
+
+FAIL "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.14" with checksum 0f095601b4e9f1691d8b4efea68c7e87
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.15" with checksum 3b199d29b8b552653cf355afa2d56e9e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-2738436853/pkg/yqlib/encoder_yaml.go.16" with checksum e4fffc2bd10165838255942147a4ab91
+------------------------------------------------------------------------------------------------------------------------------------------------------
+The mutation score is 0.529412 (9 passed, 8 failed, 4 duplicated, 0 skipped, total is 17)

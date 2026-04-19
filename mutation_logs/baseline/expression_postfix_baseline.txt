@@ -1,0 +1,699 @@
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.0" with checksum 5d9a3c664582f424a802df9a00ce907e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.1" with checksum fe9f8c7c430f17bc3e93a2c8e3e76bb2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.2" with checksum 03e9c0d95b9fabac6750cac15124e2ad
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.3" with checksum ed6e2dde277e947dc93eb4125b1273a1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.4" with checksum 36ce1e5609b1e8d224f15364ea7ba5f5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.5" with checksum 3131d48fc8938188987e73aef0c654a9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.6" with checksum 0e4e748543a783f16bd02a9df57adcf2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.7" with checksum 9eebb8fa41516238ae7242e4275d5afe
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.8" with checksum 0323fbebbb695290414addd75142c851
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.9" with checksum 38e163329ab546396137102de23e62be
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.10" with checksum 0e74de23c0b0582428fdc9a96f31b2b3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.11" with checksum 872d04fe174cc3f13729eb9a3073ac8e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.12" with checksum 169847059797febeb1819d42f15b5ec2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.13" with checksum 9b3824a09dfe9956a56f3fc10b9cac84
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.14" with checksum 0f6ef29c3734b725ebc9c121e86dff6a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.15" with checksum dfcc87ba74aac72474ec5571e5b06ea0
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.16" with checksum f111531a75b5b6c92dc731a86742f707
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.17" with checksum 002649897b5949b185ba6adde19861e7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.18" with checksum 7da008329fdae10047ca6349cea36435
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.19" with checksum 595949554dbbd55208b7aa6b0e5b6ee6
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.20" with checksum f0040fe7310cd5273a85eb7515fc9478
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.21" with checksum bc6d6f6f04712b66e6ac7df6bc503e90
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.22" with checksum d29d775d7ce62217ff9ab7e43cedec1c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.23" with checksum bbc65e5d1129013ac65a787125f4dd61
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -64,7 +64,7 @@
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+ 			if len(opStack) == 0 {
+-				return nil, errors.New("bad path expression, got close collect brackets without matching opening bracket")
++				_ = errors.New
+ 			}
+ 			// now we should have [ as the last element on the opStack, get rid of it
+ 			opStack = opStack[0 : len(opStack)-1]
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.24" with checksum 4992809a5f3ed3c817f92491936c6fd8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.25" with checksum 20e440d649e524f7bc93871ea1798615
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.26" with checksum 0e2e48ddf32a567c4c3bd8b76296b58e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.27" with checksum c01bb26a1207218d81429809798fb384
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.28" with checksum d095b008c768263b7d6cf4389a5b65f1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -104,7 +104,7 @@
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+ 			if len(opStack) == 0 {
+-				return nil, errors.New("bad expression, got close brackets without matching opening bracket")
++				_ = errors.New
+ 			}
+ 			// now we should have ( as the last element on the opStack, get rid of it
+ 			opStack = opStack[0 : len(opStack)-1]
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.29" with checksum 9a8323d6a0e8b05a64f44c7b94ed23f5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.30" with checksum 89c182626c5921e0d955b11f6d4b26f2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.31" with checksum 535c14a5787c95e325ca0cb61a205b6c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -56,7 +56,7 @@
+ 				collectOperator = collectObjectOpType
+ 			}
+ 
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != opener {
++			for len(opStack) >= 0 && opStack[len(opStack)-1].TokenType != opener {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.32" with checksum ac4001d019d9b2839350c6795ff72e0f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -89,7 +89,7 @@
+ 
+ 			//traverseArrayCollect is a sneaky op that needs to be included too
+ 			//when closing a ]
+-			if len(opStack) > 0 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
++			if len(opStack) >= 0 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
+ 				opStack[len(opStack)-1].Operation.Preferences = prefs
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.33" with checksum 87cace8c472909642747155b6ff70798
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -95,7 +95,7 @@
+ 			}
+ 
+ 		case closeBracket:
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != openBracket {
++			for len(opStack) >= 0 && opStack[len(opStack)-1].TokenType != openBracket {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.34" with checksum 10fe2b9c8136f605359342fba1a78e7d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -112,7 +112,7 @@
+ 		default:
+ 			var currentPrecedence = currentToken.Operation.OperationType.Precedence
+ 			// pop off higher precedent operators onto the result
+-			for len(opStack) > 0 &&
++			for len(opStack) >= 0 &&
+ 				opStack[len(opStack)-1].TokenType == operationToken &&
+ 				opStack[len(opStack)-1].Operation.OperationType.Precedence > currentPrecedence {
+ 				opStack, result = popOpToResult(opStack, result)
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.35" with checksum ed3afa11a588b03786ed1eab42f3eb2d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.36" with checksum 4527973d37c9be4580839d8eca5bdb6a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.37" with checksum a23794b62fa531ff21281394a75c6c05
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -56,7 +56,7 @@
+ 				collectOperator = collectObjectOpType
+ 			}
+ 
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != opener {
++			for true && opStack[len(opStack)-1].TokenType != opener {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.38" with checksum b30955739f217060d8e9c71dfb3a0899
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.39" with checksum 121178425ed83ebcd7c5eb1262ec09cb
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.40" with checksum d3aaa65e90b30603ea484fefd6cd03ed
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.41" with checksum 25bf00df2de3f4f4f0dad42ff0c1fdd6
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -89,7 +89,7 @@
+ 
+ 			//traverseArrayCollect is a sneaky op that needs to be included too
+ 			//when closing a ]
+-			if len(opStack) > 0 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
++			if true && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
+ 				opStack[len(opStack)-1].Operation.Preferences = prefs
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.42" with checksum e79ac39f72d3e618900b0f82efdc5b37
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.43" with checksum 042b0d09d06265c30caa62485f877f0d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -95,7 +95,7 @@
+ 			}
+ 
+ 		case closeBracket:
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != openBracket {
++			for true && opStack[len(opStack)-1].TokenType != openBracket {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.44" with checksum e63bf25e3845278ff8043d8b2532994c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.45" with checksum 2d07ba5457ab456781bf872d86cf6cc4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.46" with checksum 05d51314209a90634b49352849dfcfa3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.47" with checksum c1d5ce7b5ef72f202940da12c6f0336d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -112,7 +112,7 @@
+ 		default:
+ 			var currentPrecedence = currentToken.Operation.OperationType.Precedence
+ 			// pop off higher precedent operators onto the result
+-			for len(opStack) > 0 &&
++			for true &&
+ 				opStack[len(opStack)-1].TokenType == operationToken &&
+ 				opStack[len(opStack)-1].Operation.OperationType.Precedence > currentPrecedence {
+ 				opStack, result = popOpToResult(opStack, result)
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.48" with checksum 33cce8db75cc44f0bdd62f2193679eb8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.49" with checksum d55d19e1c50ccd507466954a3716432f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.50" with checksum ddc32cc52d97ffed1a0af97b3ce1c81e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.51" with checksum 170df7a221df5dd653b7007683a0b77b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.52" with checksum 7c795e6626b20995cc4b29da47759188
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.53" with checksum a9abddd14e4308d3f29d80e1a52562cf
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -127,6 +127,7 @@
+ 	if len(opStack) > 0 {
+ 		log.Debugf("opstack:")
+ 		for _, token := range opStack {
++			break
+ 			log.Debugf("- %v", token.toString(true))
+ 		}
+ 
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.54" with checksum e23db53eacbefb5e85430da73eb96c55
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -136,8 +136,10 @@
+ 	if log.IsEnabledFor(slog.LevelDebug) {
+ 		log.Debugf("PostFix Result:")
+ 		for _, currentToken := range result {
++			break
+ 			log.Debugf("> %v", currentToken.toString())
+ 		}
++
+ 	}
+ 
+ 	return result, nil
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.55" with checksum 7fa57e000916ecef3f8be66d5fd1f613
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.56" with checksum 7587daaa7bb799ee679e3af2ec01535b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.57" with checksum 68de23fb63efb81985618b0f300ee63e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.58" with checksum 779a9c039b7796d5ecefe80689206ab7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -56,7 +56,7 @@
+ 				collectOperator = collectObjectOpType
+ 			}
+ 
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != opener {
++			for len(opStack) > -1 && opStack[len(opStack)-1].TokenType != opener {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.59" with checksum 1a85256fb6bd6dfca0d97b4ff0d84135
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.60" with checksum 93200c47228ed04ac97b5df06794e971
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.61" with checksum 55057d5c9a44b5e1e0d294b1e62d6b31
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -63,7 +63,7 @@
+ 				}
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+-			if len(opStack) == 0 {
++			if len(opStack) == -1 {
+ 				return nil, errors.New("bad path expression, got close collect brackets without matching opening bracket")
+ 			}
+ 			// now we should have [ as the last element on the opStack, get rid of it
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.62" with checksum a3d4a3cb4edd92ea004af95fbf6e7f64
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.63" with checksum 2c019676c53b89204060f02041551a12
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.64" with checksum 0fb80a894de6aef6a7533d9fdcaeb018
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.65" with checksum cfbdbd478812b4b7bf56aefeec12fc4b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -89,7 +89,7 @@
+ 
+ 			//traverseArrayCollect is a sneaky op that needs to be included too
+ 			//when closing a ]
+-			if len(opStack) > 0 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
++			if len(opStack) > -1 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
+ 				opStack[len(opStack)-1].Operation.Preferences = prefs
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.66" with checksum 3f600ea5dd7eb75b176075b75443f8da
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.67" with checksum 17dc3f8271d85ef232bb268a557367a1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.68" with checksum 27bdabba00bea74459513d515a444698
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.69" with checksum 8d7d2b5e5099c6f1d951dd48ae38d7a3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -95,7 +95,7 @@
+ 			}
+ 
+ 		case closeBracket:
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != openBracket {
++			for len(opStack) > -1 && opStack[len(opStack)-1].TokenType != openBracket {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.70" with checksum 0e95276d58c8b6b29895ebea637bfc39
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.71" with checksum 3c5d492055f0cbcf060aeb313deba2c1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.72" with checksum 1c3e5fb206ee3739067534df71a0d717
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -103,7 +103,7 @@
+ 
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+-			if len(opStack) == 0 {
++			if len(opStack) == -1 {
+ 				return nil, errors.New("bad expression, got close brackets without matching opening bracket")
+ 			}
+ 			// now we should have ( as the last element on the opStack, get rid of it
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.73" with checksum e7fb616bed7a3b50325faba9d725604c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.74" with checksum 4ebbcfb67337eebfcafa1b60f099d01b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.75" with checksum b7e185fc220824ce135c4bc9d0bd1182
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -112,7 +112,7 @@
+ 		default:
+ 			var currentPrecedence = currentToken.Operation.OperationType.Precedence
+ 			// pop off higher precedent operators onto the result
+-			for len(opStack) > 0 &&
++			for len(opStack) > -1 &&
+ 				opStack[len(opStack)-1].TokenType == operationToken &&
+ 				opStack[len(opStack)-1].Operation.OperationType.Precedence > currentPrecedence {
+ 				opStack, result = popOpToResult(opStack, result)
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.76" with checksum 9dbac4149f4b265ac9daab75dffd23e6
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.77" with checksum 305000a8e54c148ccf57198ca3fb5402
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.78" with checksum 057ae268c177a6f103a37421bb1c2be7
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.79" with checksum 3eaa1648c1d29d9bb0b74f570d37153d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.80" with checksum ebb1aa658dc5214a3059e4b88f6c1089
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.81" with checksum d2d1ff3c6f2b4d56dbc0ae9167bea38c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.82" with checksum cc891cbfaedad4a70c210707a430fd48
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.83" with checksum c6b0dc17440112966c2fc2d31052eb2e
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -56,7 +56,7 @@
+ 				collectOperator = collectObjectOpType
+ 			}
+ 
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != opener {
++			for len(opStack) > 1 && opStack[len(opStack)-1].TokenType != opener {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.84" with checksum 7ffb1a39dda32f0a8477e8d6a7e3a277
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.85" with checksum 9b49dd13bc68c450164b276559b0b376
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.86" with checksum 27e854bba9d95b24a981ced19a93b498
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -63,7 +63,7 @@
+ 				}
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+-			if len(opStack) == 0 {
++			if len(opStack) == 1 {
+ 				return nil, errors.New("bad path expression, got close collect brackets without matching opening bracket")
+ 			}
+ 			// now we should have [ as the last element on the opStack, get rid of it
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.87" with checksum a9af70a9f51316505cf6ec2897d3343d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.88" with checksum f2a796697f24820741067a014e4fa511
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.89" with checksum e4dbe14da918c9f14bb4b471e539b383
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.90" with checksum 9dd2cd05ce79b2537f2ac61a7c04ae6c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -89,7 +89,7 @@
+ 
+ 			//traverseArrayCollect is a sneaky op that needs to be included too
+ 			//when closing a ]
+-			if len(opStack) > 0 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
++			if len(opStack) > 1 && opStack[len(opStack)-1].Operation != nil && opStack[len(opStack)-1].Operation.OperationType == traverseArrayOpType {
+ 				opStack[len(opStack)-1].Operation.Preferences = prefs
+ 				opStack, result = popOpToResult(opStack, result)
+ 			}
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.91" with checksum 56b05b893204a7e46f70c1d00c8b15d3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.92" with checksum 19c78abfffdc4cd06ba972a6f2551aa4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.93" with checksum e7bded2697ac78625681a5c601f74a51
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.94" with checksum 1f71580c86350327475ee31cee9e0150
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -95,7 +95,7 @@
+ 			}
+ 
+ 		case closeBracket:
+-			for len(opStack) > 0 && opStack[len(opStack)-1].TokenType != openBracket {
++			for len(opStack) > 1 && opStack[len(opStack)-1].TokenType != openBracket {
+ 				missingClosingTokenErr := validateNoOpenTokens(opStack[len(opStack)-1])
+ 				if missingClosingTokenErr != nil {
+ 					return nil, missingClosingTokenErr
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.95" with checksum e98da32b9e2565dce629a72f7e8261d4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.96" with checksum d976b7606d44563d1409195c65310d61
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.97" with checksum a4f616e0fa333edffa37a4817d4121b6
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.98" with checksum db0168d136c5a5108142fd5bc8e1aba9
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.99" with checksum 507874842d3f8cf589d7c3ae852f8725
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.100" with checksum 17bc79ad0051e567920d9f4111f2fd29
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -112,7 +112,7 @@
+ 		default:
+ 			var currentPrecedence = currentToken.Operation.OperationType.Precedence
+ 			// pop off higher precedent operators onto the result
+-			for len(opStack) > 0 &&
++			for len(opStack) > 1 &&
+ 				opStack[len(opStack)-1].TokenType == operationToken &&
+ 				opStack[len(opStack)-1].Operation.OperationType.Precedence > currentPrecedence {
+ 				opStack, result = popOpToResult(opStack, result)
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.101" with checksum 1c8804821773b3a2b8f9a1fd9624a568
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.102" with checksum 3f475b26bb559704e4110c8511ee5ca3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.103" with checksum a9986bca0ce0375253e704646976b4ab
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -124,7 +124,7 @@
+ 	}
+ 
+ 	log.Debugf("opstackLen: %v", len(opStack))
+-	if len(opStack) > 0 {
++	if len(opStack) > 1 {
+ 		log.Debugf("opstack:")
+ 		for _, token := range opStack {
+ 			log.Debugf("- %v", token.toString(true))
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.104" with checksum 33023f04c1ba9b4264c71887bb173d20
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.105" with checksum 0e8e235de6c6a696fc3f646e567cf873
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.106" with checksum 4b0a971248c9212be1d52db79a2b88d5
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -20,7 +20,7 @@
+ func popOpToResult(opStack []*token, result []*Operation) ([]*token, []*Operation) {
+ 	var newOp *token
+ 	opStack, newOp = opStack[0:len(opStack)-1], opStack[len(opStack)-1]
+-	log.Debugf("popped %v from opstack to results", newOp.toString(true))
++	_, _ = log.Debugf, newOp.toString
+ 	return opStack, append(result, newOp.Operation)
+ }
+ 
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.107" with checksum 4795f722dc1f353647e0ce96270857be
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -122,8 +122,7 @@
+ 			log.Debugf("put %v onto the opstack", currentToken.toString(true))
+ 		}
+ 	}
+-
+-	log.Debugf("opstackLen: %v", len(opStack))
++	_, _ = log.Debugf, opStack
+ 	if len(opStack) > 0 {
+ 		log.Debugf("opstack:")
+ 		for _, token := range opStack {
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.108" with checksum 68438bf357972f7f1f1520e9b8cc545d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -43,7 +43,7 @@
+ 	var tokens = append(infixTokens, &token{TokenType: closeBracket})
+ 
+ 	for _, currentToken := range tokens {
+-		log.Debugf("postfix processing currentToken %v", currentToken.toString(true))
++		_, _ = log.Debugf, currentToken.toString
+ 		switch currentToken.TokenType {
+ 		case openBracket, openCollect, openCollectObject:
+ 			opStack = append(opStack, currentToken)
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.109" with checksum bccc24d7207c8096acb7b5332e86e301
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.110" with checksum 8020525ebc0fc83400b7c0592d71863f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -47,7 +47,7 @@
+ 		switch currentToken.TokenType {
+ 		case openBracket, openCollect, openCollectObject:
+ 			opStack = append(opStack, currentToken)
+-			log.Debugf("put %v onto the opstack", currentToken.toString(true))
++			_, _ = log.Debugf, currentToken.toString
+ 		case closeCollect, closeCollectObject:
+ 			var opener tokenType = openCollect
+ 			var collectOperator = collectOpType
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.111" with checksum 0e31157e1751aa44cab92477ad07b5de
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.112" with checksum c19531305a4fe97d9ad0e91d8c1eee31
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -68,7 +68,7 @@
+ 			}
+ 			// now we should have [ as the last element on the opStack, get rid of it
+ 			opStack = opStack[0 : len(opStack)-1]
+-			log.Debugf("deleting open bracket from opstack")
++			_ = log.Debugf
+ 
+ 			//and append a collect to the result
+ 
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.113" with checksum e4a4f167acab9a20382f808f14a1e5fa
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.114" with checksum 1de135b339380751214d1841174cf0c8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -81,7 +81,7 @@
+ 				prefs.OptionalTraverse = true
+ 			}
+ 			result = append(result, &Operation{OperationType: collectOperator})
+-			log.Debugf("put collect onto the result")
++			_ = log.Debugf
+ 			if opener != openCollect {
+ 				result = append(result, &Operation{OperationType: shortPipeOpType})
+ 				log.Debugf("put shortpipe onto the result")
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.115" with checksum 52f3950985fb5169cf58f258f1cb2337
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.116" with checksum 5d999eec8adb9420bd34daaed439d02a
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.117" with checksum 4f6f9bacf2f13bc79a0b289a301c61f4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.118" with checksum 8543d9d2be5f24a9df752367f69a91f2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.120" with checksum 159843bae52310cc8fc051b024144fd8
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -84,7 +84,7 @@
+ 			log.Debugf("put collect onto the result")
+ 			if opener != openCollect {
+ 				result = append(result, &Operation{OperationType: shortPipeOpType})
+-				log.Debugf("put shortpipe onto the result")
++				_ = log.Debugf
+ 			}
+ 
+ 			//traverseArrayCollect is a sneaky op that needs to be included too
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.121" with checksum df93cf3e5438701a924bdec6c373a265
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.122" with checksum 0f20dfe9adeea865b4802161a48c876d
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.123" with checksum f6a9eb6506d37a434a58e4932884f830
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.124" with checksum ee7487f09548505bb9d6592e3ede0c97
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.125" with checksum 76c897cd30875a239c94d3c3ca4065c2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.126" with checksum b58f1170d1213cf3697567c7604c093f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -119,7 +119,7 @@
+ 			}
+ 			// add this operator to the opStack
+ 			opStack = append(opStack, currentToken)
+-			log.Debugf("put %v onto the opstack", currentToken.toString(true))
++			_, _ = log.Debugf, currentToken.toString
+ 		}
+ 	}
+ 
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.127" with checksum 16b92490170e87a7b9bdd003a42922bd
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.128" with checksum b6e5ea0c19b3cf19a1f39cc15adfec9f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -125,7 +125,7 @@
+ 
+ 	log.Debugf("opstackLen: %v", len(opStack))
+ 	if len(opStack) > 0 {
+-		log.Debugf("opstack:")
++		_ = log.Debugf
+ 		for _, token := range opStack {
+ 			log.Debugf("- %v", token.toString(true))
+ 		}
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.129" with checksum d891c847a669076152f29b5a872d8320
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -127,7 +127,7 @@
+ 	if len(opStack) > 0 {
+ 		log.Debugf("opstack:")
+ 		for _, token := range opStack {
+-			log.Debugf("- %v", token.toString(true))
++			_, _ = log.Debugf, token.toString
+ 		}
+ 
+ 		return nil, fmt.Errorf("bad expression - probably missing close bracket on %v", opStack[len(opStack)-1].toString(false))
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.130" with checksum ce8fa6d331f844982c584f3635d2bbca
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -134,7 +134,7 @@
+ 	}
+ 
+ 	if log.IsEnabledFor(slog.LevelDebug) {
+-		log.Debugf("PostFix Result:")
++		_ = log.Debugf
+ 		for _, currentToken := range result {
+ 			log.Debugf("> %v", currentToken.toString())
+ 		}
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.131" with checksum c43154175827015875e930ee1f3a2480
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -136,7 +136,7 @@
+ 	if log.IsEnabledFor(slog.LevelDebug) {
+ 		log.Debugf("PostFix Result:")
+ 		for _, currentToken := range result {
+-			log.Debugf("> %v", currentToken.toString())
++			_, _ = log.Debugf, currentToken.toString
+ 		}
+ 	}
+ 
+
+FAIL "/tmp/go-mutesting-64537883/pkg/yqlib/expression_postfix.go.132" with checksum 16e083621ce4b69b2bdb66ab41e4b63b
+------------------------------------------------------------------------------------------------------------------------------------------------------
+The mutation score is 0.727273 (96 passed, 36 failed, 1 duplicated, 0 skipped, total is 132)

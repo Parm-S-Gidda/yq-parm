@@ -1,0 +1,30 @@
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.0" with checksum 60ea6a63cab5281951e07771ec669b10
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.1" with checksum e353eac84562ddc22894063658c654d4
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.2" with checksum b5f9eaf3b6d47274dad978fb724cb0c3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.3" with checksum 41e5750384b883470efbcc4778f52fe2
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.4" with checksum e1d3f9946a47539594e2169919865f91
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.5" with checksum a5564f6509abce6d7f6eeb5f903a557f
+------------------------------------------------------------------------------------------------------------------------------------------------------
+--- Original
++++ New
+@@ -5,8 +5,7 @@
+ )
+ 
+ func selectOperator(d *dataTreeNavigator, context Context, expressionNode *ExpressionNode) (Context, error) {
+-
+-	log.Debugf("selectOperation")
++	_ = log.Debugf
+ 	var results = list.New()
+ 
+ 	for el := context.MatchingNodes.Front(); el != nil; el = el.Next() {
+
+FAIL "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.6" with checksum a9232762023fb7fbe45ad31711f76088
+------------------------------------------------------------------------------------------------------------------------------------------------------
+PASS "/tmp/go-mutesting-1337337695/pkg/yqlib/operator_select.go.7" with checksum 81566e54dbd5659f032c1f64b01b662c
+------------------------------------------------------------------------------------------------------------------------------------------------------
+The mutation score is 0.875000 (7 passed, 1 failed, 1 duplicated, 0 skipped, total is 8)
