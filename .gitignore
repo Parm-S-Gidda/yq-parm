@@ -23,7 +23,6 @@ _cgo_export.*
 
 _testmain.go
 cover.out
-coverage.out
 coverage.html
 coverage_sorted.txt
 *.exe
