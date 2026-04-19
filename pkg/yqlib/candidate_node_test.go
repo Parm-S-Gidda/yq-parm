@@ -392,3 +392,64 @@ func TestCandidateNodeAddChildren(t *testing.T) {
 	test.AssertResult(t, true, mapParent.Content[2].IsMapKey)  // key2
 	test.AssertResult(t, false, mapParent.Content[3].IsMapKey) // value2
 }
+
+//----------------------------------------------
+//Tests added by Parm 
+
+
+func TestKindToString(t *testing.T) {
+
+
+	result := kindToString(Kind(8))
+
+	if result != "AliasNode" {
+		t.Errorf("Expected AliasNode but got %s", result)
+	}
+
+
+	result = kindToString(Kind(100))
+
+	if result != "Unknown" {
+		t.Errorf("Expected Unkown but got %s", result)
+	}
+}
+
+func TestVisitValues_Error_Sequence(t *testing.T) {
+	node := &CandidateNode{
+		Kind: SequenceNode,
+		Content: []*CandidateNode{
+			{Value: "a"},
+			{Value: "b"},
+		},
+	}
+
+	expectedErr := fmt.Errorf("fail")
+
+	err := node.VisitValues(func(n *CandidateNode) error {
+		return expectedErr
+	})
+
+	if err != expectedErr {
+		t.Errorf("expected error to propagate")
+	}
+}
+
+func TestVisitValues_Error_Mapping(t *testing.T) {
+	node := &CandidateNode{
+		Kind: MappingNode,
+		Content: []*CandidateNode{
+			{Value: "k1"}, {Value: "v1"},
+			{Value: "k2"}, {Value: "v2"},
+		},
+	}
+
+	expectedErr := fmt.Errorf("fail")
+
+	err := node.VisitValues(func(n *CandidateNode) error {
+		return expectedErr
+	})
+
+	if err != expectedErr {
+		t.Errorf("expected error to propagate")
+	}
+}

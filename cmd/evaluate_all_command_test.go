@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"github.com/spf13/cobra"
 )
 
 func TestCreateEvaluateAllCommand(t *testing.T) {
@@ -326,4 +327,68 @@ func TestEvaluateAll_NulSepOutput(t *testing.T) {
 	if output.Len() == 0 {
 		t.Error("Expected output from evaluateAll with nul separator output")
 	}
+}
+
+//---------------------------------------------------
+//Parm Added Tests
+
+func TestCreateEvaluateAllCommandNew(t *testing.T) {
+	cmd := createEvaluateAllCommand()
+
+	if cmd == nil {
+		t.Fatal("createEvaluateAllCommand returned nil")
+		return
+	}
+
+	args1 := []string{}
+
+	_, returnVal := cmd.ValidArgsFunction(cmd, args1, "")
+
+	if returnVal != cobra.ShellCompDirectiveNoFileComp {
+		t.Errorf("Expected NoFileComp")
+	}
+
+	args2 := []string{"notEMPTY"}
+
+	_, returnVal = cmd.ValidArgsFunction(cmd, args2, "")
+
+	if returnVal != cobra.ShellCompDirectiveDefault {
+		t.Errorf("Expected default file comp")
+	}
+
+}
+
+func TestEvaluateAllFrontMatterEmpty(t *testing.T) {
+		// Create a temporary YAML file
+		tempDir := t.TempDir()
+		yamlFile := filepath.Join(tempDir, "test.yaml")
+		yamlContent := []byte("name: test\nage: 25\n")
+		err := os.WriteFile(yamlFile, yamlContent, 0600)
+		if err != nil {
+			t.Fatalf("Failed to create test YAML file: %v", err)
+		}
+	
+		// Create a temporary command
+		cmd := createEvaluateAllCommand()
+	
+		// Set up command to capture output
+		var output bytes.Buffer
+		cmd.SetOut(&output)
+
+		//make front matter ""
+
+		oldFrontMatter := frontMatter
+		frontMatter = "process"
+	
+		// Test with a single file
+		err = evaluateAll(cmd, []string{yamlFile})
+	
+		// Should not error
+		if err != nil {
+
+			frontMatter = oldFrontMatter
+			t.Errorf("evaluateAll with front matter should not error, got: %v", err)
+		}
+	
+		frontMatter = oldFrontMatter
 }

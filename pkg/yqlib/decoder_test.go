@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"fmt"
 	"strings"
+	"testing"
+	"github.com/zclconf/go-cty/cty"
 )
 
 type formatScenario struct {
@@ -74,3 +76,56 @@ func mustProcessFormatScenario(s formatScenario, decoder Decoder, encoder Encode
 	return result
 
 }
+
+//----------------------------------------------------------------------
+
+func TestConvertCtyValueToNode(t *testing.T) {
+	
+	n := convertCtyValueToNode(cty.NullVal(cty.String))
+	if n.Tag != "!!null" {
+		t.Errorf("expected null tag, got %s", n.Tag)
+	}
+
+	// string
+	n = convertCtyValueToNode(cty.StringVal("hello"))
+	if n.Value != "hello" {
+		t.Errorf("expected hello, got %v", n.Value)
+	}
+
+	// bool
+	n = convertCtyValueToNode(cty.BoolVal(true))
+	if n.Value != "true" {
+		t.Errorf("expected true, got %v", n.Value)
+	}
+
+	// int number
+	n = convertCtyValueToNode(cty.NumberIntVal(5))
+	if n.Value != "5" {
+		t.Errorf("expected 5, got %v", n.Value)
+	}
+
+	// float number
+	n = convertCtyValueToNode(cty.MustParseNumberVal("3.14"))
+	if n.Value != "3.14" {
+		t.Errorf("expected 3.14, got %v", n.Value)
+	}
+
+	// list / sequence
+	n = convertCtyValueToNode(cty.ListVal([]cty.Value{
+		cty.StringVal("a"),
+		cty.StringVal("b"),
+	}))
+	if n.Kind != SequenceNode {
+		t.Errorf("expected sequence node")
+	}
+
+	// map / object
+	n = convertCtyValueToNode(cty.MapVal(map[string]cty.Value{
+		"name": cty.StringVal("parm"),
+	}))
+	if n.Kind != MappingNode {
+		t.Errorf("expected mapping node")
+	}
+}
+
+

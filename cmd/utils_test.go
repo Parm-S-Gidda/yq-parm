@@ -8,6 +8,8 @@ import (
 
 	"github.com/mikefarah/yq/v4/pkg/yqlib"
 	"github.com/spf13/cobra"
+	"log/slog"
+
 )
 
 func TestIsAutomaticOutputFormat(t *testing.T) {
@@ -1433,3 +1435,150 @@ func TestConfigureUnwrapScalar(t *testing.T) {
 		})
 	}
 }
+
+//-----------------------------------------------------------------
+//Tests add by Parm 
+
+
+
+func TestMaybeFileErr(t *testing.T) {
+
+	yqlib.GetLogger().SetLevel(slog.LevelDebug)
+
+	reulst := maybeFile("fakePath.yaml")
+
+	if reulst {
+		t.Errorf("fake file path should have returned error")
+	}
+
+	tempFile, err := os.CreateTemp("", "test")
+	if err != nil {
+		t.Fatalf("Failed to create temp file: %v", err)
+	}
+	defer os.Remove(tempFile.Name())
+	tempFile.Close()
+
+
+
+	reulst = maybeFile(tempFile.Name())
+
+	if !reulst {
+		t.Errorf("should not have errored on real file")
+	}
+}
+
+func TestProcessedStdInArgsForLoop(t *testing.T) {
+
+	oldNullInput := nullInput
+	nullInput = false
+	oldStdin := os.Stdin
+
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatalf("failed to create pipe: %v", err)
+	}
+	defer r.Close()
+	defer w.Close()
+
+	os.Stdin = r
+
+	args := []string{"notEmpty"}
+
+	result := processStdInArgs(args)
+
+	
+
+	if len(result) != 2 {
+
+		nullInput = oldNullInput
+		os.Stdin = oldStdin
+		t.Fatalf("expected 2 args, got %v", result)
+	}
+	if result[0] != "notEmpty" || result[1] != "-" {
+
+		nullInput = oldNullInput
+		os.Stdin = oldStdin
+		t.Fatalf("expected [notEmpty -], got %v", result)
+	}
+	
+
+}
+
+
+func TestProcessedStdInArgsForLoopDashALreadyIn(t *testing.T) {
+
+	oldNullInput := nullInput
+	nullInput = false
+	oldStdin := os.Stdin
+
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatalf("failed to create pipe: %v", err)
+	}
+	defer r.Close()
+	defer w.Close()
+
+	os.Stdin = r
+
+	args := []string{"-"}
+
+	result := processStdInArgs(args)
+
+	
+
+	if len(result) != 1 {
+
+		nullInput = oldNullInput
+		os.Stdin = oldStdin
+		t.Fatalf("expected 1 args, got %v", result)
+	}
+	if result[0] != "-" {
+
+		nullInput = oldNullInput
+		os.Stdin = oldStdin
+		t.Fatalf("expected [-], got %v", result)
+	}
+	
+
+}
+
+func TestUnwrapScalarFlagStrcIsSet(t *testing.T) {
+	f := &unwrapScalarFlagStrc{value: true}
+
+	if !f.IsSet() {
+		t.Errorf("expected true, got false")
+	}
+
+	f.value = false
+
+	if f.IsSet() {
+		t.Errorf("expected false, got true")
+	}
+}
+
+func TestUnwrapScalarFlagStrcSetValid(t *testing.T) {
+	f := &unwrapScalarFlagStrc{}
+
+	err := f.Set("true")
+
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+	if f.value != true {
+		t.Errorf("expected value=true, got %v", f.value)
+	}
+	if !f.explicitlySet {
+		t.Errorf("expected explicitlySet=true")
+	}
+}
+
+func TestUnwrapScalarFlagStrcType(t *testing.T) {
+	f := &unwrapScalarFlagStrc{}
+
+	if f.Type() != "bool" {
+		t.Errorf("expected type 'bool', got %v", f.Type())
+	}
+}
+
+
+

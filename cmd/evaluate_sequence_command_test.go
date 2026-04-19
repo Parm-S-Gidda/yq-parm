@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"github.com/spf13/cobra"
 )
 
 func TestCreateEvaluateSequenceCommand(t *testing.T) {
@@ -274,4 +275,68 @@ func TestEvaluateSequence_ExitStatus(t *testing.T) {
 	if err == nil {
 		t.Error("Expected error when no matches found and exit status is enabled")
 	}
+}
+
+//---------------------------------------------------
+//Parm Added Tests
+
+func TestCreateEvaluateSequenceCommandNew(t *testing.T) {
+	cmd := createEvaluateSequenceCommand()
+
+	if cmd == nil {
+		t.Fatal("createEvaluateAllCommand returned nil")
+		return
+	}
+
+	args1 := []string{}
+
+	_, returnVal := cmd.ValidArgsFunction(cmd, args1, "")
+
+	if returnVal != cobra.ShellCompDirectiveNoFileComp {
+		t.Errorf("Expected NoFileComp")
+	}
+
+	args2 := []string{"notEMPTY"}
+
+	_, returnVal = cmd.ValidArgsFunction(cmd, args2, "")
+
+	if returnVal != cobra.ShellCompDirectiveDefault {
+		t.Errorf("Expected default file comp")
+	}
+
+}
+
+func TestEvaluateAllSequenceFrontMatterEmpty(t *testing.T) {
+		// Create a temporary YAML file
+		tempDir := t.TempDir()
+		yamlFile := filepath.Join(tempDir, "test.yaml")
+		yamlContent := []byte("name: test\nage: 25\n")
+		err := os.WriteFile(yamlFile, yamlContent, 0600)
+		if err != nil {
+			t.Fatalf("Failed to create test YAML file: %v", err)
+		}
+	
+		// Create a temporary command
+		cmd := createEvaluateSequenceCommand()
+	
+		// Set up command to capture output
+		var output bytes.Buffer
+		cmd.SetOut(&output)
+
+		//make front matter ""
+
+		oldFrontMatter := frontMatter
+		frontMatter = "process"
+	
+		// Test with a single file
+		err = evaluateSequence(cmd, []string{yamlFile})
+	
+		// Should not error
+		if err != nil {
+
+			frontMatter = oldFrontMatter
+			t.Errorf("evaluateAll with front matter should not error, got: %v", err)
+		}
+	
+		frontMatter = oldFrontMatter
 }
