@@ -1,0 +1,13 @@
+﻿bash : time=2026-04-15T21:01:04.268-07:00 level=ERROR 
+msg="Failed to remove temp file: 
+C:\\Users\\tqc\\AppData\\Local\\Temp\\temp2771595603"
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\port
+ability\run_portability_windows.ps1:225 char:5
++     bash ./scripts/acceptance.sh
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time=202 
+   6-04-15...temp2771595603":String) [], RemoteExcep  
+  tion
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

@@ -1,0 +1,17 @@
+NAME="Linux Mint"
+VERSION="22.2 (Zara)"
+ID=linuxmint
+ID_LIKE="ubuntu debian"
+PRETTY_NAME="Linux Mint 22.2"
+VERSION_ID="22.2"
+HOME_URL="https://www.linuxmint.com/"
+SUPPORT_URL="https://forums.linuxmint.com/"
+BUG_REPORT_URL="http://linuxmint-troubleshooting-guide.readthedocs.io/en/latest/"
+PRIVACY_POLICY_URL="https://www.linuxmint.com/"
+VERSION_CODENAME=zara
+UBUNTU_CODENAME=noble
+Linux tqc-Standard-PC-i440FX-PIIX-1996 6.8.0-106-generic #106-Ubuntu SMP PREEMPT_DYNAMIC Fri Mar  6 07:58:08 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+go version go1.26.2 linux/amd64
+linux
+amd64
+602586d8

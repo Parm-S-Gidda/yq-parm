@@ -62,6 +62,11 @@ func SafelyCloseReader(reader io.Reader) {
 	switch reader := reader.(type) {
 	case *os.File:
 		safelyCloseFile(reader)
+	/* This part is commected out because it's only fixed bug only for Windows 10, not for Linux version */
+	// case io.Closer:
+	// 	if err := reader.Close(); err != nil {
+	// 		log.Errorf("Error closing reader: %v", err)
+	// 	}
 	}
 }
 

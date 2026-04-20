@@ -1,0 +1,8 @@
+﻿go : go: downloading github.com/spf13/cobra v1.10.2
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\portability\run_portability_windows.ps1:197 char:3
++   go build -o .\yq.exe .
++   ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (go: downloading...3/cobra v1.10.2:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

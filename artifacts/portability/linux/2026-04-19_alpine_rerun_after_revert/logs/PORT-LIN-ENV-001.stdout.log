@@ -1,0 +1,11 @@
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.23.4
+PRETTY_NAME="Alpine Linux v3.23"
+HOME_URL="https://alpinelinux.org/"
+BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
+Linux alpine-ct 6.17.2-1-pve #1 SMP PREEMPT_DYNAMIC PMX 6.17.2-1 (2025-10-21T11:55Z) x86_64 Linux
+go version go1.25.9 linux/amd64
+linux
+amd64
+359a8f11

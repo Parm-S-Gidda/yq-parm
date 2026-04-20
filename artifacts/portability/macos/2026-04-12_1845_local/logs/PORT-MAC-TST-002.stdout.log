@@ -1,0 +1,59 @@
+--------------------------------------------------------------
+acceptance_tests/bad_args.sh
+--------------------------------------------------------------
+testWriteInPlacePipeIn
+testWriteInPlacePipeInEvalall
+testWriteInPlaceWithSplit
+testWriteInPlaceWithSplitEvalAll
+testNullWithFiles
+testNullWithFilesEvalAll
+
+Ran 6 tests.
+
+OK
+--------------------------------------------------------------
+acceptance_tests/basic.sh
+--------------------------------------------------------------
+testBasicEvalRoundTrip
+testBasicTrailingContent
+testBasicTrailingContent
+testBasicTrailingContentEvalAll
+testBasicTrailingContentEvalAll
+testBasicPipeWithDot
+testBasicExpressionMatchesFileName
+testBasicExpressionFromFile
+ASSERT:expected:<{"xyz":"meow","cool":"frog"}> but was:<>
+ASSERT:expected:<{"xyz":"meow","cool":"frog"}> but was:<>
+testBasicExpressionFromFileDos
+ASSERT:expected:<{"xyz":"meow","cool":"frog"}> but was:<>
+ASSERT:expected:<{"xyz":"meow","cool":"frog"}> but was:<>
+testBasicGitHubAction
+testBasicGitHubActionWithExpression
+testBasicEvalAllAllFiles
+testBasicCatWithFilesNoDash
+testBasicCreateFileGithubAction
+testBasicEvalAllCatWithFilesNoDash
+testBasicCatWithFilesNoDashWithExp
+testBasicEvalAllCatWithFilesNoDashWithExp
+testBasicStdInWithFiles
+testBasicEvalAllStdInWithFiles
+testBasicStdInWithFilesReverse
+testBasicEvalAllStdInWithFilesReverse
+testBasicEvalRoundTripNoEval
+testBasicStdInWithOneArg
+testBasicUpdateInPlaceSequence
+testBasicUpdateInPlaceSequenceNoEval
+testBasicUpdateInPlaceSequenceEvalAll
+testBasicUpdateInPlaceMultipleFilesNoExpressionEval
+testBasicUpdateInPlaceMultipleFilesNoExpressionEvalAll
+testBasicNoExitStatus
+testBasicExitStatus
+testBasicExitStatusNoEval
+testBasicExtractFieldWithSeparator
+testBasicExtractMultipleFieldWithSeparator
+testBasicMultiplyAssignMultiDoc
+testBasicClosedStdIn
+
+Ran 35 tests.
+
+FAILED (failures=6)

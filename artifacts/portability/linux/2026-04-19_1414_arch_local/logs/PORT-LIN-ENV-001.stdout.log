@@ -1,0 +1,16 @@
+NAME="Arch Linux"
+PRETTY_NAME="Arch Linux"
+ID=arch
+BUILD_ID=rolling
+ANSI_COLOR="38;2;23;147;209"
+HOME_URL="https://archlinux.org/"
+DOCUMENTATION_URL="https://wiki.archlinux.org/"
+SUPPORT_URL="https://bbs.archlinux.org/"
+BUG_REPORT_URL="https://gitlab.archlinux.org/groups/archlinux/-/issues"
+PRIVACY_POLICY_URL="https://terms.archlinux.org/docs/privacy-policy/"
+LOGO=archlinux-logo
+Linux archilinux-vm 6.19.11-arch1-1 #1 SMP PREEMPT_DYNAMIC Thu, 02 Apr 2026 23:33:01 +0000 x86_64 GNU/Linux
+go version go1.26.2-X:nodwarf5 linux/amd64
+linux
+amd64
+b01dfc6c

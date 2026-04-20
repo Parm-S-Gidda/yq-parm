@@ -1,0 +1,8 @@
+﻿bash : # github.com/mikefarah/yq/v4/pkg/yqlib
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\portability\run_portability_windows.ps1:228 char:5
++     bash ./scripts/build-small-yq.sh
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (# github.com/mikefarah/yq/v4/pkg/yqlib:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

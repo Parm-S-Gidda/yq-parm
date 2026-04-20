@@ -1,0 +1,3 @@
+ok  	github.com/mikefarah/yq/v4	1.807s
+ok  	github.com/mikefarah/yq/v4/cmd	0.036s
+ok  	github.com/mikefarah/yq/v4/pkg/yqlib	0.890s

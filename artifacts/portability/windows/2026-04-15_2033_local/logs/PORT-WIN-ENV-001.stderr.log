@@ -1,0 +1,9 @@
+﻿go : The term 'go' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\portability\run_portability_windows.ps1:175 char:3
++   go version
++   ~~
+    + CategoryInfo          : ObjectNotFound: (go:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+

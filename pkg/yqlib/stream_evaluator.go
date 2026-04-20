@@ -56,6 +56,8 @@ func (s *streamEvaluator) EvaluateFiles(expression string, filenames []string, p
 			return err
 		}
 		processedDocs, err := s.Evaluate(filename, reader, node, printer, decoder)
+		/* This part is commected out because it's only fixed bug only for Windows 10, not for Linux version */
+		// SafelyCloseReader(reader)
 		if err != nil {
 			return err
 		}

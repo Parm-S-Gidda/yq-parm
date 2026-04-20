@@ -1,0 +1,8 @@
+﻿bash : shunit2:ERROR testWriteInPlacePipeIn() returned non-zero return code.
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\portability\run_portability_windows.ps1:225 char:5
++     bash ./scripts/acceptance.sh
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (shunit2:ERROR t...ro return code.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

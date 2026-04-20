@@ -1,0 +1,50 @@
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+time=2026-04-19T14:01:08.752-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:08.800-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:08.911-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:08.941-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.009-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.030-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.105-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.132-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.442-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.533-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'tsv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.556-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'tsv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.651-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'kyaml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.692-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'kyaml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.805-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.840-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.919-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'xml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:09.951-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'xml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:10.327-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-19T14:01:10.355-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+egrep: warning: egrep is obsolescent; using grep -E
+rm: cannot remove 'test*.yml': No such file or directory
+Flag --tojson has been deprecated, please use -o=json instead
+Flag --tojson has been deprecated, please use -o=json instead
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+/home/tqc/dev/cmpt473/yq-fork/acceptance_tests/nul-separator.sh: line 101: hd: command not found
+/home/tqc/dev/cmpt473/yq-fork/acceptance_tests/nul-separator.sh: line 101: hd: command not found
+Error: 1:1: lexer: invalid input text "xxx"
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: read-0-err couldn't fill all value E = '0', 'b', '0'
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: read-0-err couldn't fill all value E = '1', 'b', '1'
+egrep: warning: egrep is obsolescent; using grep -E
+Flag --tojson has been deprecated, please use -o=json instead
+Flag --tojson has been deprecated, please use -o=json instead
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E
+egrep: warning: egrep is obsolescent; using grep -E

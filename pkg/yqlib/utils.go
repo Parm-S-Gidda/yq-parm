@@ -20,6 +20,17 @@ func SetFilenameAlias(realPath string, displayName string) {
 	filenameAliases[realPath] = displayName
 }
 
+/* This part is commected out because it's only fixed bug only for Windows 10, not for Linux version */
+
+// type bufferedFileReader struct {
+// 	*bufio.Reader
+// 	file *os.File
+// }
+
+// func (b *bufferedFileReader) Close() error {
+// 	return b.file.Close()
+// }
+
 // ClearFilenameAliases removes all filename aliases.
 func ClearFilenameAliases() {
 	filenameAliases = map[string]string{}
@@ -47,6 +58,19 @@ func readStream(filename string) (io.Reader, error) {
 	}
 	return reader, nil
 
+	/* This part is commected out because it's only fixed bug only for Windows 10, not for Linux version */
+	// if filename == "-" {
+	// 	return bufio.NewReader(os.Stdin), nil
+	// }
+
+	// file, err := os.Open(filename) // #nosec
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// return &bufferedFileReader{
+	// 	Reader: bufio.NewReader(file),
+	// 	file: file,
+	// }, nil
 }
 
 func writeString(writer io.Writer, txt string) error {

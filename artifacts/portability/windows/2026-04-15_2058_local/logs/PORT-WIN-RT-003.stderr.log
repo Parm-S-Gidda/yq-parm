@@ -1,0 +1,16 @@
+﻿.\yq.exe : Error: bad file 'C:\Users\tqc\Downloads\cmp
+t473\yq-fork\artifacts\portability\windows\2026-04-15_
+2058_local\inputs\basic.json': invalid character '├»' 
+looking for beginning of value
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\port
+ability\run_portability_windows.ps1:209 char:3
++   .\yq.exe '.name' (Join-Path $inputDir 
+"basic.json")
++   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Error: b 
+   ad file...inning of value:String) [], RemoteExcep  
+  tion
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

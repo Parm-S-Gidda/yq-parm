@@ -1,0 +1,8 @@
+﻿go : go: downloading github.com/pkg/diff v0.0.0-20210226163009-20ebb0f2a09e
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\portability\run_portability_windows.ps1:193 char:3
++   go build ./...
++   ~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (go: downloading...09-20ebb0f2a09e:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

@@ -1,0 +1,32 @@
+time=2026-04-14T21:45:29.218-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.225-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.240-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.248-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'properties', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.263-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.274-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.290-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.297-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.354-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'csv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.369-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'tsv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.376-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'tsv', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.392-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'kyaml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.400-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'kyaml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.414-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.421-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.437-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'xml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.443-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'xml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.506-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+time=2026-04-14T21:45:29.514-07:00 level=WARN msg="yq default output is now 'auto' (based on the filename extension). Normally yq would output 'yml', but for backwards compatibility 'yaml' has been set. Please use -oy to specify yaml, or drop the -p flag."
+rm: cannot remove 'test*.yml': No such file or directory
+Flag --tojson has been deprecated, please use -o=json instead
+Flag --tojson has been deprecated, please use -o=json instead
+Error: 1:1: lexer: invalid input text "xxx"
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: read-0-err couldn't fill all value E = '0', 'b', '0'
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: can't serialise value because it contains NUL char and you are using NUL separated output
+Error: read-0-err couldn't fill all value E = '1', 'b', '1'
+Flag --tojson has been deprecated, please use -o=json instead
+Flag --tojson has been deprecated, please use -o=json instead
+rm: cannot remove 'test*.yaml': No such file or directory

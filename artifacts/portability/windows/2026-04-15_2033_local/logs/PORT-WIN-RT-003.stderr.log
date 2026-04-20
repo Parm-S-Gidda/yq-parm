@@ -1,0 +1,9 @@
+﻿.\yq.exe : The term '.\yq.exe' is not recognized as the name of a cmdlet, function, script file, or operable program. 
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At C:\Users\tqc\Downloads\cmpt473\yq-fork\scripts\portability\run_portability_windows.ps1:197 char:3
++   .\yq.exe '.name' (Join-Path $inputDir "basic.json")
++   ~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (.\yq.exe:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+

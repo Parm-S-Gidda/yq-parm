@@ -1,0 +1,8 @@
+ProductName:		macOS
+ProductVersion:		26.4
+BuildVersion:		25E246
+Darwin u172-016-130-207.burnaby.sfu.ca 25.4.0 Darwin Kernel Version 25.4.0: Thu Mar 19 19:30:44 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T6000 arm64
+go version go1.26.2 darwin/arm64
+darwin
+arm64
+838c5169
